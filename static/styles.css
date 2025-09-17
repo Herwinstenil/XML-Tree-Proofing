@@ -1,0 +1,115 @@
+/* ===== Base layout ===== */
+* { box-sizing: border-box; }
+html, body { height: 100%; }
+body { margin: 0; font-family: system-ui, Segoe UI, Arial, sans-serif; }
+
+/* ===== Top bar ===== */
+.top {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: #fff;
+  border-bottom: 1px solid #ddd;
+  padding: 8px 10px;
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.controls button { margin-right: 8px; }
+
+/* ===== Panes + splitter ===== */
+.panes {
+  display: flex;
+  align-items: stretch;
+  gap: 0;
+  height: calc(100vh - 80px);
+  min-height: 300px;
+  box-sizing: border-box;
+}
+
+.pane {
+  display: flex;
+  flex-direction: column;
+  min-width: 120px;
+  overflow: hidden;
+}
+
+.pane-title {
+  flex: 0 0 auto;
+  font-weight: 600;
+  text-align: center;
+  padding: 6px 8px;
+  border-bottom: 1px solid #ddd;
+  background: #f7f7f7;
+}
+
+#leftPane,
+#rightPane {
+  flex: 1 1 auto;
+  border: 0;
+  padding: 10px;
+  overflow: auto;
+  background: #fafafa;
+  white-space: pre-wrap;
+  word-break: break-word;
+  position: relative;          /* stabilizes offset/geometry math for JS */
+  scroll-behavior: smooth;     /* nicer auto-centering on Next/Prev */
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+/* Draggable splitter between panes */
+.splitter {
+  flex: 0 0 8px;
+  cursor: col-resize;
+  background: linear-gradient(90deg, #e9e9e9 0, #dcdcdc 50%, #e9e9e9 100%);
+  border-left: 1px solid #d0d0d0;
+  border-right: 1px solid #d0d0d0;
+}
+.splitter:focus { outline: 2px solid #66aaff; outline-offset: -2px; }
+
+/* During drag: optional global cursor + no text-select feel */
+body.resizing, body.resizing * { cursor: col-resize !important; user-select: none !important; }
+
+/* ===== Inline diff colors ===== */
+.editOldInline { background: #FFE6E6; }  /* left old (red-ish) */
+.editNewInline { background: #E6FFE6; }  /* right new (green-ish) */
+
+/* Current diff focus anchor (both panes) */
+.focusTarget {
+  outline: 2px dashed #999;
+  outline-offset: 2px;
+  background: #fff6cc;
+}
+
+/* ===== Buttons & inputs tweaks ===== */
+button {
+  appearance: none;
+  border: 1px solid #ccc;
+  background: #fff;
+  padding: 6px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+button:hover { background: #f6f6f6; }
+button:active { background: #eee; }
+button:disabled { opacity: 0.6; cursor: default; }
+
+input[type="file"] {
+  border: 1px solid #ddd;
+  padding: 4px 6px;
+  border-radius: 6px;
+  background: #fff;
+}
+
+/* ===== Small screens: stack panes vertically (optional) ===== */
+@media (max-width: 800px) {
+  .panes { flex-direction: column; }
+  .splitter { height: 8px; width: 100%; cursor: row-resize; }
+}
+
+/* Disable smooth behavior during forced jumps */
+.no-smooth { scroll-behavior: auto !important; }
