@@ -256,6 +256,18 @@ def accept():
                 "attr": attr
             }
             STATE["accepted"].append(entry)
+
+            # --- SAVE to MongoDB --- 
+            mongo.db.accepted.insert_one({ 
+            "kind": kind, 
+            "steps": stepsL, 
+            "steps_right": stepsR, 
+            "direction": direction, 
+            "attr": attr, 
+            "raw_left": STATE["raw_left"], 
+            "raw_right": STATE["raw_right"] 
+            })
+
             # recompute issues after fallback apply
             try:
                 STATE["issues"] = compute_issues(STATE["left_tree"], STATE["right_tree"], only=None)
