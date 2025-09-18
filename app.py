@@ -420,6 +420,15 @@ def apply():
     with open(outL, "wb") as f: f.write(STATE["raw_left"].encode("utf-8", errors="replace"))
     with open(outR, "wb") as f: f.write(STATE["raw_right"].encode("utf-8", errors="replace"))
 
+    # --- SAVE final XML to MongoDB --- 
+    mongo.db.final_versions.insert_one({ 
+        "raw_left": STATE["raw_left"], 
+        "raw_right": STATE["raw_right"], 
+        "applied_left": applied_left, 
+        "applied_right": applied_right, 
+        "created_at": datetime.now(pytz.timezone("Asia/Kolkata")).strftime("%Y-%m-%d %H:%M:%S") 
+        })
+
     resp = {
         "applied_left": applied_left,
         "applied_right": applied_right,
@@ -429,7 +438,6 @@ def apply():
     if applied_left == 0 and applied_right == 0:
         resp["note"] = "already_applied_only"  # 👈 hint for UI
     return jsonify(resp)
-
 
 
 @app.route("/download/left")
