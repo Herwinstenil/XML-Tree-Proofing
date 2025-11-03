@@ -1,0 +1,5 @@
+- [x] Add media query for max-width: 767px (stack panes vertically, reduce font sizes, padding, and adjust splitter for mobile)
+- [x] Add media query for min-width: 768px and max-width: 1023px (horizontal layout, optimize spacing for tablets)
+- [x] Add media query for min-width: 1024px and max-width: 1439px (horizontal layout, standard desktop sizes)
+- [x] Add media query for min-width: 1440px and max-width: 2559px (horizontal layout, larger screens, increase font sizes if needed)
+- [x] Add media query for min-width: 2560px (4K, horizontal layout, high-res adjustments like larger fonts)

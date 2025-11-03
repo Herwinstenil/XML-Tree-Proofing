@@ -109,6 +109,46 @@ input[type="file"] {
 @media (max-width: 800px) {
   .panes { flex-direction: column; }
   .splitter { height: 8px; width: 100%; cursor: row-resize; }
+  button { padding: 4px 8px; font-size: 12px; }
+  input[type="file"] { padding: 2px 4px; font-size: 12px; }
+}
+
+/* Tablet: 768px - 1023px (horizontal, optimized for tablets) */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .top { padding: 6px 12px; }
+  .panes { height: calc(100vh - 70px); }
+  .pane-title { padding: 8px 10px; font-size: 16px; }
+  #leftPane, #rightPane { padding: 12px; font-size: 14px; }
+  .splitter { flex: 0 0 10px; }
+}
+
+/* Desktop: 1024px - 1439px (standard desktop) */
+@media (min-width: 1024px) and (max-width: 1439px) {
+  .top { padding: 8px 16px; }
+  .panes { height: calc(100vh - 80px); }
+  .pane-title { padding: 10px 12px; }
+  #leftPane, #rightPane { padding: 15px; font-size: 14px; }
+  .splitter { flex: 0 0 12px; }
+}
+
+/* Large Desktop: 1440px - 2559px (larger screens) */
+@media (min-width: 1440px) and (max-width: 2559px) {
+  .top { padding: 10px 20px; }
+  .panes { height: calc(100vh - 90px); }
+  .pane-title { padding: 12px 15px; font-size: 18px; }
+  #leftPane, #rightPane { padding: 20px; font-size: 15px; line-height: 1.6; }
+  .splitter { flex: 0 0 15px; }
+}
+
+/* 4K: 2560px+ (high resolution) */
+@media (min-width: 2560px) {
+  .top { padding: 12px 24px; }
+  .panes { height: calc(100vh - 100px); }
+  .pane-title { padding: 15px 20px; font-size: 20px; }
+  #leftPane, #rightPane { padding: 25px; font-size: 16px; line-height: 1.7; }
+  .splitter { flex: 0 0 20px; }
+  button { padding: 8px 12px; font-size: 16px; }
+  input[type="file"] { padding: 6px 8px; font-size: 16px; }
 }
 
 /* Disable smooth behavior during forced jumps */
