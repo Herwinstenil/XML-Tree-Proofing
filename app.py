@@ -15,7 +15,7 @@ import pytz
 
 app = Flask(__name__)
 os.makedirs("output", exist_ok=True)
-app.config["MONGO_URI"] = "mongodb://localhost:27017/xml_proofing" 
+app.config["MONGO_URI"] = os.environ.get('MONGO_URI', 'mongodb://localhost:27017/xml_proofing')
 mongo = PyMongo(app)
 
 STATE = {

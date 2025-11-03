@@ -3,3 +3,6 @@ lxml
 flask-pymongo
 pymongo
 python-dotenv
+pytz
+Werkzeug
+Jinja2
