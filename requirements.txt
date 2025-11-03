@@ -1,2 +1,5 @@
 flask
 lxml
+flask-pymongo
+pymongo
+python-dotenv
